@@ -153,12 +153,12 @@
         // Event listeners for buttons
         button1.addEventListener('click', () => {
           buttonContainer.innerHTML = '';
-          updateText("My name is Blake Butsko, I'm an aspiring computer scientist.\nI'm a creative, empathic, detail oriented problem solver.\nI've been the \"idea man\" for every team I've ever been on.\nWelcome to my portfolio.", () => {;
+          updateText("My name is Blake Butsko, I'm a computer scientist.\nI'm creative, empathic, detail oriented problem solver.\nI've been the \"idea man\" for every team I've ever been on.\nWelcome to my portfolio.", () => {;
           
           setTimeout(function() {
             // Create a new button element
             const newButton = document.createElement("button");
-            newButton.innerHTML = "New Button";  // Button text
+            newButton.innerHTML = "Continue?";  // Button text
             newButton.onclick = function() {
               // Display none black screen
               blackScreen.style.display = 'none';
