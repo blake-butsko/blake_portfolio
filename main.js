@@ -2,6 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { TransformControls } from 'three/addons/controls/TransformControls.js';
 
 // Setup
 
@@ -40,11 +41,12 @@ loader.load('assets/old_computer.glb', (gltf) => {
 loader.load('assets/urban_building.glb', (gltf) => {
   const model = gltf.scene;
   scene.add(model);
+  // control.attach( model );
 
   // Optionally, set the position, scale, and rotation of the model
   // left to right, up/down, back/forth
-  model.position.set(0, 0, 0);
-  model.scale.set(0.125, 0.125, 0.125);
+  // model.position.set(0, 0, 0);
+  // model.scale.set(0.125, 0.125, 0.125);
   // model.rotation.set(0, -Math.PI/2, 0);
 
   // Render the scene again to display the model
@@ -70,9 +72,20 @@ scene.add(pointLight, ambientLight);
 
 // const lightHelper = new THREE.PointLightHelper(pointLight)
 // const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
+// const axesHelper = new THREE.AxesHelper(5);
+// // const controls = new THREE.TransformControls(camera, renderer.domElement);
+// // controls.attach(object); // Attach the object to the controls
+// scene.add(gridHelper)
 
-// const controls = new OrbitControls(camera, renderer.domElement);
+// let orbit = new OrbitControls( currentCamera, renderer.domElement );
+// orbit.update();
+// orbit.addEventListener( 'change', render );
+
+// let control = new TransformControls( currentCamera, renderer.domElement );
+// control.addEventListener( 'change', render );
+// control.addEventListener( 'dragging-changed', function ( event ) {
+//   orbit.enabled = ! event.value;
+// } );
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);

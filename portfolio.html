@@ -1,19 +1,40 @@
-<!-- Will Exclude all repositories that aren't private, obvi-->
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .card-img-top {
-            height: 200px;
-            object-fit: cover;
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <title>Blake Butsko</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <script>
+        // Check if the sessionStorage variable 'animationPlayed' exists
+        if (sessionStorage.getItem('animationPlayed')) {
+          // If not set, inject the HTML into the page
+          document.write(`
+            <div id="black-screen2">
+              <div id="typing-container">
+                <div id="typing-text">&gt;&gt; Hello there, welcome to my portfolio.<br>&gt;&gt; Have you been here before?<span id="caret" style="visibility: visible;"></span></div>
+                <div id="button-container" class="button-container">
+                  <button>Let's see what you got!</button>
+                  <button>Been here before</button>
+                </div>
+              </div>
+            </div>
+          `);
         }
-    </style>
-</head>
-<body>
+      </script>
+
     <div class="container my-5">
         <h1 class="mb-4">My GitHub Projects</h1>
 
@@ -48,6 +69,14 @@
                 repositories = data;
                 displayProjects(repositories);
                 populateLanguageFilter(repositories);
+                if (repositories.length === 0) {
+                    projectsContainer.innerHTML = '<p>No projects found</p>';
+                }
+                if(sessionStorage.getItem('animationPlayed')){
+                    document.getElementById('black-screen2').classList.add('screen-turn-off');
+                    sessionStorage.removeItem('animationPlayed');
+                }
+                
             })
             .catch(error => console.error('Error fetching repos:', error));
 
@@ -109,6 +138,5 @@
         searchInput.addEventListener('input', filterProjects);
         languageFilter.addEventListener('change', filterProjects);
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
