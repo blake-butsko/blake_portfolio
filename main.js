@@ -45,11 +45,18 @@ loader.load('assets/urban_building.glb', (gltf) => {
 
   // Optionally, set the position, scale, and rotation of the model
   // left to right, up/down, back/forth
-  // model.position.set(0, 0, 0);
-  // model.scale.set(0.125, 0.125, 0.125);
-  // model.rotation.set(0, -Math.PI/2, 0);
+  model.position.set(1.5, -0.8, 4.6);
+  model.scale.set(0.0125, 0.0125, 0.0125);
+  model.rotation.set(0, Math.PI/2, 0);
 
   // Render the scene again to display the model
+  renderer.render(scene, camera);
+});
+
+loader.load('assets/side_table1.glb', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+  model.position.set(0, -1, 10);
   renderer.render(scene, camera);
 });
 // Torus
@@ -72,10 +79,10 @@ scene.add(pointLight, ambientLight);
 
 // const lightHelper = new THREE.PointLightHelper(pointLight)
 // const gridHelper = new THREE.GridHelper(200, 50);
-// const axesHelper = new THREE.AxesHelper(5);
+const axesHelper = new THREE.AxesHelper(5);
 // // const controls = new THREE.TransformControls(camera, renderer.domElement);
 // // controls.attach(object); // Attach the object to the controls
-// scene.add(gridHelper)
+scene.add(axesHelper)
 
 // let orbit = new OrbitControls( currentCamera, renderer.domElement );
 // orbit.update();
