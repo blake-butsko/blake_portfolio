@@ -23,49 +23,83 @@ renderer.render(scene, camera);
 
 // computer model
 const loader = new GLTFLoader();
-loader.load('assets/old_computer.glb', (gltf) => {
-  const model = gltf.scene;
+loader.load('assets/test12.glb', (glb) => {
+  const model = glb.scene;
+  model.position.set(-0.05, -0.48, 0.9);
+  // 85
+  model.rotation.y = Math.PI - (10*Math.PI/180);
   scene.add(model);
-
-  // Optionally, set the position, scale, and rotation of the model
-  // left to right, up/down, back/forth
-  // Have a just black screen by default then screen turn off animation have it scroll out a few increments (but somehow don't let the person scroll into the computer) - just have it turn off and have it look at the computer like remove the black part or have a computer a few z increments closer then move that back
-  // Or just have the og model move back
-  model.position.set(0, -0.2, -0.1); // -0.2,-0.1
-  // model.scale.set(1, 1, 1);
-  model.rotation.set(0, -Math.PI/2, 0);
-
-  // Render the scene again to display the model
-  renderer.render(scene, camera);
-});
-loader.load('assets/urban_building.glb', (gltf) => {
-  const model = gltf.scene;
-  scene.add(model);
-  // control.attach( model );
-
-  // Optionally, set the position, scale, and rotation of the model
-  // left to right, up/down, back/forth
-  model.position.set(1.5, -0.8, 4.6);
-  model.scale.set(0.0125, 0.0125, 0.0125);
-  model.rotation.set(0, Math.PI/2, 0);
-
-  // Render the scene again to display the model
   renderer.render(scene, camera);
 });
 
-loader.load('assets/side_table1.glb', (gltf) => {
+loader.load('assets/trees_29_33_V.glb', (gltf) => {
   const model = gltf.scene;
   scene.add(model);
-  model.position.set(0, -1, 10);
+  // model.scale.set(0.5, 0.5, 0.5);
+  model.position.set(1, 0.3, -1.8);
+  // model.position.set(0, 0.2, 0);
   renderer.render(scene, camera);
 });
+
+loader.load('assets/construction_scene2.glb', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+  model.rotation.set(0, -Math.PI / 2, 0);
+  model.position.set(-10,-1,8);
+  renderer.render(scene, camera);
+});
+
+// loader.load('assets/cement_pipes.glb', (gltf) => {
+//   const model = gltf.scene;
+//   scene.add(model);
+//   model.position.set(0, -1, 10);
+//   renderer.render(scene, camera);
+// });
+loader.load('assets/pipe_display_right.glb', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+  model.position.set(3,3.5,17.7);
+  model.rotation.set(0, Math.PI, 0);
+  
+  // model.position.set(0,-1,28);
+  // model.position.set(11, -4, 12);
+  renderer.render(scene, camera);
+});
+
+loader.load('assets/Concrete_pipefbx.glb', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+  model.position.set(9, -4, 20);
+  renderer.render(scene, camera);
+});
+
+loader.load('assets/road5.glb', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+  model.position.set(0,0, 7);
+  renderer.render(scene, camera);
+});
+
+// Export from here
+// import { OBJExporter } from 'three/examples/jsm/exporters/OBJExporter';
+
+// const exporter = new OBJExporter();
+// const objData = exporter.parse(scene);
+
+// const blob = new Blob([objData], { type: 'text/plain' });
+// const link = document.createElement('a');
+// link.href = URL.createObjectURL(blob);
+// link.download = 'scene.obj';
+// link.click();
+
+
 // Torus
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
-const torus = new THREE.Mesh(geometry, material);
+// const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+// const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
+// const torus = new THREE.Mesh(geometry, material);
 
-scene.add(torus);
+// scene.add(torus);
 
 // Lights
 
@@ -94,6 +128,40 @@ scene.add(axesHelper)
 //   orbit.enabled = ! event.value;
 // } );
 
+// function addRectangularPrisms() {
+//   const textureLoader = new THREE.TextureLoader();
+
+//   // Load four different textures
+//   const textures = [
+//     textureLoader.load('assets/brick1.jpg'),
+//     textureLoader.load('assets/brick2.jpg'),
+//     textureLoader.load('assets/brick3.jpg'),
+//     textureLoader.load('assets/brick4.jpg'),
+//   ];
+
+//   // Create an array of geometries and materials for four prisms
+//   const prisms = textures.map((texture) => {
+//     const geometry = new THREE.BoxGeometry(1, 1, 1); // Adjust size as needed
+//     const material = new THREE.MeshStandardMaterial({ map: texture });
+//     return new THREE.Mesh(geometry, material);
+//   });
+
+//   // Add multiple prisms with random positions
+//   for (let i = 0; i < 50; i++) { // Adjust the number of prisms
+//     const prism = prisms[Math.floor(Math.random() * prisms.length)].clone();
+
+//     // Set random positions
+//     const [x, y, z] = Array(3)
+//       .fill()
+//       .map(() => THREE.MathUtils.randFloatSpread(100));
+
+//     prism.position.set(x, y, z);
+
+//     // Add the prism to the scene
+//     scene.add(prism);
+//   }
+// }
+
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
@@ -111,37 +179,37 @@ Array(200).fill().forEach(addStar);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+const spaceTexture = new THREE.TextureLoader().load('sky1.jpg');
 scene.background = spaceTexture;
 
 // Avatar
 
-const jeffTexture = new THREE.TextureLoader().load('jeff.png');
+// const jeffTexture = new THREE.TextureLoader().load('jeff.png');
 
-const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+// const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
 
-scene.add(jeff);
+// scene.add(jeff);
 
 // Moon
 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture,
-  })
-);
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     normalMap: normalTexture,
+//   })
+// );
 
-scene.add(moon);
+// scene.add(moon);
 
-moon.position.z = 30;
-moon.position.setX(-10);
+// moon.position.z = 30;
+// moon.position.setX(-10);
 
-jeff.position.z = -5;
-jeff.position.x = 2;
+// jeff.position.z = -5;
+// jeff.position.x = 2;
 
 // Scroll Animation
 
@@ -151,8 +219,8 @@ function moveCamera() {
   // moon.rotation.y += 0.075;
   // moon.rotation.z += 0.05;
 
-  jeff.rotation.y += 0.01;
-  jeff.rotation.z += 0.01;
+  // jeff.rotation.y += 0.01;
+  // jeff.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -167,11 +235,11 @@ moveCamera();
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
-  torus.rotation.z += 0.01;
+  // torus.rotation.x += 0.01;
+  // torus.rotation.y += 0.005;
+  // torus.rotation.z += 0.01;
 
-  moon.rotation.x += 0.005;
+  // moon.rotation.x += 0.005;
 
   // controls.update();
 
@@ -179,3 +247,4 @@ function animate() {
 }
 
 animate();
+// renderer.render(scene, camera);
